@@ -1,4 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns
+from django.conf.urls import url
+
+from django.contrib.auth.views import login
+from django.contrib.auth.views import logout
+
 #include, 
 
 #from django_book.views import *
@@ -15,9 +20,14 @@ from django_book.views import del_cookie
 from django_book.views import show_session
 from django_book.views import set_session
 from django_book.views import del_session
+from django_book.views import welcome
 
 from django_book.user.views import search_form
 from django_book.user.views import search
+from django_book.user.views import create_user
+from django_book.user.views import user_list
+from django_book.user.views import user_modify
+from django_book.user.views import user_delete
 
 from django_book.person.views import classroom_add
 from django_book.person.views import classroom_list
@@ -58,4 +68,11 @@ urlpatterns = patterns('',
     url(r'^test_session/show/$', show_session),
     url(r'^test_session/set/(\w+)/$', set_session),
     url(r'^test_session/del/$', del_session),
+    url(r'^accounts/login/$',  login, {'template_name': 'login.html'}),  
+    url(r'^accounts/logout/$', logout), 
+    url(r'^welcome/$', welcome),
+    url(r'^user/add/$', create_user),
+    url(r'^user/list/$', user_list),
+    url(r'^user/modify/(\d+)/$', user_modify),
+    url(r'^user/delete/(\d+)/$', user_delete),
 )

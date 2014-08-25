@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <title>用户管理</title>
+</head>
+<body>
+    <h1>这里是User的管理页面</h1>
+        <table border="1" cellpadding="10">
+          <tr>
+            <td align="center">序号</td>
+            <td align="center">用户名</td>
+            <td align="center">邮箱</td>
+            <td align="center">操作</td>
+          </tr>
+          {% for myuser in user_list%}
+          <tr>
+            <td align="right">{{ myuser.id }}</td>
+            <td align="right">{{ myuser.username }}</td>
+            <td align="right">{{ myuser.email }}</td>
+            <td align="right">
+            <a href="../modify/{{ myuser.id }}">修改</a>
+            <a href="../delete/{{ myuser.id }}">删除</a>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+</body>
+</html>
