@@ -7,6 +7,8 @@ from django_book.views import current_datetime
 from django_book.views import hours_ahead
 from django_book.views import hello_base
 from django_book.views import request_test
+from django_book.views import show_image
+from django_book.views import show_pdf
 
 from django_book.user.views import search_form
 from django_book.user.views import search
@@ -42,4 +44,6 @@ urlpatterns = patterns('',
     url(r'^classroom/list/$', classroom_list),
     url(r'^classroom/modify/(\d+)/$', classroom_modify),
     url(r'^classroom/delete/(\d+)/$', classroom_delete), 
+    url(r'^show_image/$', show_image),
+    url(r'^show_pdf/$', show_pdf),
 )

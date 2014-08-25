@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
+from reportlab.pdfgen import canvas
+
+import sys
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+sys.setdefaultencoding(default_encoding)
 
 import datetime
 
@@ -63,3 +70,31 @@ def request_test(request):
     except KeyError:
         GetREMOTE_ADDR = 'unknown'
     return render_to_response('request_test.html', locals())
+
+def show_image(request):
+    image_data = open("django_book/images/babyking.png", "rb").read()
+    return HttpResponse(image_data, mimetype="image/png")
+
+
+
+def show_pdf(request):
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+    pdfmetrics.registerFont(TTFont('SimHei','simhei.ttf'))
+
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=hello.pdf'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    #p.drawString(100, 750, "Hello world.")
+    p.setFont('SimHei', 12)
+    p.drawString(100, 750, "你好，世界！")
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
