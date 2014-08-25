@@ -2,6 +2,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from reportlab.pdfgen import canvas
+from django.contrib.auth.decorators import login_required
 
 import sys
 default_encoding = 'utf-8'
@@ -75,8 +76,6 @@ def show_image(request):
     image_data = open("django_book/images/babyking.png", "rb").read()
     return HttpResponse(image_data, mimetype="image/png")
 
-
-
 def show_pdf(request):
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
@@ -98,3 +97,39 @@ def show_pdf(request):
     p.showPage()
     p.save()
     return response
+
+def show_cookie(request):
+    if "MyTestCookie" in request.COOKIES:
+        return HttpResponse("Cookie[MyTestCookie]的内容是: %s" %request.COOKIES["MyTestCookie"])
+    else:
+        return HttpResponse("Cookie[MyTestCookie]的内容是空")
+
+def set_cookie(request,my_test_cookie):
+    response = HttpResponse("Cookie[MyTestCookie]的内容被设置成: %s" %my_test_cookie)
+    response.set_cookie("MyTestCookie", my_test_cookie)
+    return response
+
+def del_cookie(request):
+    response = HttpResponse("Cookie[MyTestCookie]已被删除.")
+    del request.COOKIES["MyTestCookie"]
+    return response
+
+def show_session(request):
+    if "MyTestSession" in request.session:
+        return HttpResponse("Session[MyTestSession]的内容是: %s" %request.session["MyTestSession"])
+    else:
+        return HttpResponse("Session[MyTestSession]的内容是空")
+
+def set_session(request, session_value):
+    response = HttpResponse("Session[MyTestSession]的内容被设置成: %s" %session_value)
+    request.session["MyTestSession"] = session_value
+    return response
+
+def del_session(request):
+    response = HttpResponse("Cookie[MyTestSession]已被删除.")
+    del request.COOKIES["MyTestSession"]
+    return response
+
+@login_required
+def welcome(request):
+    return render_to_response('welcome.html', locals())

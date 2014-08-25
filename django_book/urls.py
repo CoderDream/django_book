@@ -9,6 +9,12 @@ from django_book.views import hello_base
 from django_book.views import request_test
 from django_book.views import show_image
 from django_book.views import show_pdf
+from django_book.views import show_cookie
+from django_book.views import set_cookie
+from django_book.views import del_cookie
+from django_book.views import show_session
+from django_book.views import set_session
+from django_book.views import del_session
 
 from django_book.user.views import search_form
 from django_book.user.views import search
@@ -46,4 +52,10 @@ urlpatterns = patterns('',
     url(r'^classroom/delete/(\d+)/$', classroom_delete), 
     url(r'^show_image/$', show_image),
     url(r'^show_pdf/$', show_pdf),
+    url(r'^test_cookie/show/$', show_cookie),
+    url(r'^test_cookie/set/(\w+)/$', set_cookie),
+    url(r'^test_cookie/del/$', del_cookie),
+    url(r'^test_session/show/$', show_session),
+    url(r'^test_session/set/(\w+)/$', set_session),
+    url(r'^test_session/del/$', del_session),
 )
