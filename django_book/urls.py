@@ -2,7 +2,19 @@ from django.conf.urls import patterns, url
 #include, 
 
 #from django_book.views import *
-from django_book.views import hello, current_datetime, hours_ahead, hello_base
+from django_book.views import hello
+from django_book.views import current_datetime
+from django_book.views import hours_ahead
+from django_book.views import hello_base
+from django_book.views import request_test
+
+from django_book.user.views import search_form
+from django_book.user.views import search
+
+from django_book.person.views import classroom_add
+from django_book.person.views import classroom_list
+from django_book.person.views import classroom_modify
+from django_book.person.views import classroom_delete
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -23,5 +35,11 @@ urlpatterns = patterns('',
     url(r'^time/$', current_datetime),  
     url(r'^^time/plus/(\d{1,2})/$', hours_ahead),
     url(r'^hello_base/$', hello_base),
-    
+    url(r'^request_test/$', request_test),
+    url(r'^search_form/$', search_form),
+    url(r'^search/$', search),
+    url(r'^classroom/add/$', classroom_add),
+    url(r'^classroom/list/$', classroom_list),
+    url(r'^classroom/modify/(\d+)/$', classroom_modify),
+    url(r'^classroom/delete/(\d+)/$', classroom_delete), 
 )

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <title>数据库操作简单表的添加</title>
+</head>
+<body>
+    <h1>这里是ClassRoom的管理页面</h1>
+        <table border="1" cellpadding="10">
+          <tr>
+            <td align="center">序号</td>
+            <td align="center">班级名称</td>
+            <td align="center">导师姓名</td>
+          </tr>
+          {% for myclass in classroom_list%}
+          <tr>
+            <td align="right">{{ myclass.id }}</td>
+            <td align="right">{{ myclass.name }}</td>
+            <td align="right">{{ myclass.tutor }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+</body>
+</html>

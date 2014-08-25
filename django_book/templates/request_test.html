@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<title>request对象中的内容</title>
+</head>
+<body>
+	<table border="1" cellpadding="10">
+		<tr>
+			<td align="center">标题</td>
+			<td align="center">内容</td>
+		</tr>
+		<tr>
+			<td align="right">Path:</td>
+			<td>{{ GetPath }}</td>
+		</tr>
+		<tr>
+			<td align="right">Host:</td>
+			<td>{{ GetHost }}</td>
+		</tr>
+		<tr>
+			<td align="right">FullPath:</td>
+			<td>{{ GetFullPath }}</td>
+		</tr>
+		<tr>
+			<td align="right">IsSecure:</td>
+			<td>{{ GetIsSecure }}</td>
+		</tr>
+		<tr>
+			<td align="right">HTTP_REFERER:</td>
+			<td>{{ GetHTTP_REFERER }}</td>
+		</tr>
+		<tr>
+			<td align="right">HTTP_USER_AGENT:</td>
+			<td>{{ GetHTTP_USER_AGENT }}</td>
+		</tr>
+		<tr>
+			<td align="right">REMOTE_ADDR:</td>
+			<td>{{ GetREMOTE_ADDR }}</td>
+		</tr>
+	</table>
+</body>
+</html>

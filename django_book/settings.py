@@ -5,19 +5,38 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
+    ('CoderDream', 'coderdream@gmail.com'),  
 )
 
 MANAGERS = ADMINS
 
-#20140822
+from os import environ
+debug = not environ.get("APP_NAME", "")
+if debug:
+    #LOCAL
+    db_name = "mytestdb"
+    name = "root"
+    pwd = "1234"
+    host = "127.0.0.1"
+    port = "3306"
+else:
+    #SAE
+    import sae.const
+    db_name = sae.const.MYSQL_DB
+    name = sae.const.MYSQL_USER
+    pwd = sae.const.MYSQL_PASS
+    host = sae.const.MYSQL_HOST
+    port = sae.const.MYSQL_PORT
+    host_s = sae.const.MYSQL_HOST_S
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mytestdb',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '1234',                  # Not used with sqlite3.
-        'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': db_name,                      # Or path to database file if using sqlite3.
+        'USER': name,                      # Not used with sqlite3.
+        'PASSWORD': pwd,                  # Not used with sqlite3.
+        'HOST': host,                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': port,                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -121,6 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_book.person',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

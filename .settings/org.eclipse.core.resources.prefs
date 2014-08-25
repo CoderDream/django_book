@@ -1,3 +1,5 @@
-#Mon Aug 25 13:30:47 CST 2014
+#Mon Aug 25 15:02:11 CST 2014
 eclipse.preferences.version=1
+encoding//django_book/person/views.py=utf-8
+encoding//django_book/user/views.py=utf-8
 encoding//django_book/views.py=utf-8
