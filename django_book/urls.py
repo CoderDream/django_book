@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 #include, 
 
 #from django_book.views import *
-from django_book.views import hello, current_datetime
+from django_book.views import hello, current_datetime, hours_ahead, hello_base
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -21,4 +21,7 @@ urlpatterns = patterns('',
     
     url(r'^hello/$', hello),
     url(r'^time/$', current_datetime),  
+    url(r'^^time/plus/(\d{1,2})/$', hours_ahead),
+    url(r'^hello_base/$', hello_base),
+    
 )
